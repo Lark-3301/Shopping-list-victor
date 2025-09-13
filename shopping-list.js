@@ -32,4 +32,6 @@ let fourthProduct = {
 
 shoppingList.push(fourthProduct)
 
+
+
 console.table(shoppingList)
