@@ -58,6 +58,13 @@ shoppingList = removeItem(shoppingList, 3)
 
 console.table(shoppingList)
 
-function updateItem(index, newItem, newQuantity) {
-    
-}
+function updateItem(list, index, newItem, newQuantity) {
+    let updatedProduct = list[index]; 
+        updatedProduct.item = newItem;
+        updatedProduct.quantity = newQuantity;
+        return list;
+    }
+
+shoppingList = updateItem(shoppingList, 1, "cebolla", 6)
+
+console.table(shoppingList)

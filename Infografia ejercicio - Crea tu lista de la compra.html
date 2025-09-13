@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Tu Primera Lista de la Compra con JS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Estilos para que el scroll sea suave */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Pequeño estilo para las barras de scroll */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <!-- Título Principal -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Tu Primera Lista de la Compra con JS</h1>
+            <p class="text-lg text-slate-600 mt-2">Una guía visual para entender cómo crear y manejar datos en JavaScript.</p>
+        </header>
+
+        <!-- Contenido Principal de la Infografía -->
+        <main class="space-y-12">
+
+            <!-- === PASO 1: PREPARANDO EL ESCENARIO === -->
+            <section id="step1" class="p-6 bg-white rounded-2xl shadow-lg border border-slate-200">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-blue-100 text-blue-600 rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl">1</div>
+                    <h2 class="text-3xl font-bold text-slate-800">Preparando el Escenario 🛒</h2>
+                </div>
+                <p class="mb-8 text-slate-600">Antes de nada, necesitamos un "carrito" (un array vacío) y las "fichas de producto" (objetos) que vamos a meter dentro.</p>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- 1.1 El Carrito -->
+                    <div class="bg-slate-100 p-5 rounded-xl">
+                        <h3 class="font-semibold text-lg mb-2">1.1 El Carrito Vacío</h3>
+                        <p class="text-sm text-slate-500 mb-3">Creamos una lista vacía (Array) para guardar los productos.</p>
+                        <pre class="bg-slate-800 text-white p-3 rounded-lg text-sm"><code>let shoppingList = []</code></pre>
+                    </div>
+                    <!-- 1.2 Las Fichas -->
+                    <div class="bg-slate-100 p-5 rounded-xl">
+                        <h3 class="font-semibold text-lg mb-2">1.2 Las Fichas de Producto</h3>
+                        <p class="text-sm text-slate-500 mb-3">Creamos un objeto para cada producto con sus detalles.</p>
+                        <pre class="bg-slate-800 text-white p-3 rounded-lg text-sm"><code>let firstProduct = {
+    item: "tomates",
+    quantity: 3,
+    purchased: false
+}</code></pre>
+                    </div>
+                    <!-- 1.3 Al Carrito -->
+                    <div class="bg-slate-100 p-5 rounded-xl">
+                        <h3 class="font-semibold text-lg mb-2">1.3 ¡Al Carrito!</h3>
+                        <p class="text-sm text-slate-500 mb-3">Usamos `.push()` para añadir cada producto al final de la lista.</p>
+                        <pre class="bg-slate-800 text-white p-3 rounded-lg text-sm"><code>shoppingList.push(firstProduct)</code></pre>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- === PASO 2: LAS HERRAMIENTAS MÁGICAS (FUNCIONES) === -->
+            <section id="step2" class="p-6 bg-white rounded-2xl shadow-lg border border-slate-200">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-green-100 text-green-600 rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl">2</div>
+                    <h2 class="text-3xl font-bold text-slate-800">Las Herramientas Mágicas 🔧</h2>
+                </div>
+                <p class="mb-8 text-slate-600">Para no repetir código, creamos funciones: máquinas reutilizables que realizan tareas específicas. Les damos "ingredientes" (parámetros) y nos devuelven un resultado.</p>
+
+                <div class="space-y-6">
+                    <!-- 2.1 addItem -->
+                    <div class="flex flex-col md:flex-row gap-6 p-4 border border-slate-200 rounded-xl">
+                        <div class="md:w-1/2">
+                            <h3 class="text-xl font-bold mb-2 text-green-700">La Máquina de AÑADIR: `addItem`</h3>
+                            <p class="text-slate-600 mb-4">Esta función crea un nuevo producto y lo añade a la lista que le pasemos.</p>
+                            <div class="text-sm">
+                                <p><strong>Ingredientes:</strong> Una lista (`list`), un nombre (`newItem`), una cantidad (`newQuantity`).</p>
+                                <p><strong>Receta:</strong></p>
+                                <ol class="list-decimal list-inside pl-2 mt-1 space-y-1">
+                                    <li>Crea una nueva "ficha de producto" (`newProduct`).</li>
+                                    <li>La añade (`.push()`) al final de la lista.</li>
+                                    <li>Devuelve (`return`) la lista actualizada.</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 bg-slate-800 text-white p-4 rounded-lg">
+                            <pre class="text-sm"><code>function addItem (list, newItem, newQuantity) {
+    let newProduct = {
+        item: newItem,
+        quantity: newQuantity,
+        purchased: false
+    }
+    list.push(newProduct)
+    return list 
+}</code></pre>
+                        </div>
+                    </div>
+                    <!-- 2.2 removeItem -->
+                     <div class="flex flex-col md:flex-row gap-6 p-4 border border-slate-200 rounded-xl">
+                        <div class="md:w-1/2">
+                            <h3 class="text-xl font-bold mb-2 text-red-700">La Máquina de QUITAR: `removeItem`</h3>
+                            <p class="text-slate-600 mb-4">Elimina un producto de la lista basándose en su posición (índice).</p>
+                             <div class="text-sm">
+                                <p><strong>Ingredientes:</strong> Una lista (`list`) y una posición (`index`).</p>
+                                <p><strong>Receta:</strong></p>
+                                <ol class="list-decimal list-inside pl-2 mt-1 space-y-1">
+                                    <li>Usa `.splice(index, 1)` para cortar y quitar un (1) elemento desde la posición `index`.</li>
+                                    <li>Devuelve (`return`) la lista sin el elemento.</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 bg-slate-800 text-white p-4 rounded-lg">
+                            <pre class="text-sm"><code>function removeItem(list, index) {
+    list.splice(index, 1)
+    return list
+}</code></pre>
+                        </div>
+                    </div>
+                    <!-- 2.3 updateItem -->
+                     <div class="flex flex-col md:flex-row gap-6 p-4 border border-slate-200 rounded-xl">
+                        <div class="md:w-1/2">
+                            <h3 class="text-xl font-bold mb-2 text-orange-700">La Máquina de MODIFICAR: `updateItem`</h3>
+                            <p class="text-slate-600 mb-4">Encuentra un producto por su posición y actualiza sus datos.</p>
+                             <div class="text-sm">
+                                <p><strong>Ingredientes:</strong> Una lista (`list`), una posición (`index`), y los nuevos datos (`newItem`, `newQuantity`).</p>
+                                <p><strong>Receta:</strong></p>
+                                <ol class="list-decimal list-inside pl-2 mt-1 space-y-1">
+                                    <li>Encuentra el producto con `list[index]`.</li>
+                                    <li>Asigna (`=`) el `newItem` a la propiedad `item` del producto.</li>
+                                     <li>Asigna (`=`) la `newQuantity` a la propiedad `quantity`.</li>
+                                    <li>Devuelve (`return`) la lista con el producto modificado.</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 bg-slate-800 text-white p-4 rounded-lg">
+                            <pre class="text-sm"><code>function updateItem(list, index, newItem, newQuantity) {
+    let updatedProduct = list[index]; 
+    updatedProduct.item = newItem;
+    updatedProduct.quantity = newQuantity;
+    return list;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- === PASO 3: ¡MANOS A LA OBRA! === -->
+            <section id="step3" class="p-6 bg-white rounded-2xl shadow-lg border border-slate-200">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-purple-100 text-purple-600 rounded-full h-12 w-12 flex items-center justify-center font-bold text-xl">3</div>
+                    <h2 class="text-3xl font-bold text-slate-800">¡Manos a la Obra! ✅</h2>
+                </div>
+                <p class="mb-8 text-slate-600">Finalmente, usamos nuestras funciones para manipular la lista. Usamos `console.table()` para ver los resultados de forma clara en la consola del navegador.</p>
+                
+                 <div class="bg-slate-800 text-white p-4 rounded-lg">
+                    <pre class="text-sm"><code>// 1. Añadimos un producto
+shoppingList = addItem(shoppingList, "sandia", 3);
+console.table(shoppingList); // Muestra la lista con 5 productos
+
+// 2. Eliminamos el producto en la posición 3 ("repollo")
+shoppingList = removeItem(shoppingList, 3);
+console.table(shoppingList); // Muestra la lista con 4 productos
+
+// 3. Modificamos el producto en la posición 1 ("patatas")
+shoppingList = updateItem(shoppingList, 1, "cebolla", 6);
+console.table(shoppingList); // Muestra "cebolla" en lugar de "patatas"</code></pre>
+                 </div>
+            </section>
+            
+        </main>
+        
+        <footer class="text-center mt-12 py-6 border-t border-slate-200">
+            <p class="text-slate-500">¡Felicidades! Has creado y manipulado datos en JavaScript como un profesional.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
