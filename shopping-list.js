@@ -32,7 +32,6 @@ let fourthProduct = {
 
 shoppingList.push(fourthProduct)
 
-let newList = []
 
 function addItem (list/* shoppingList */, newItem, newQuantity) {
     let newProduct = {
@@ -45,8 +44,20 @@ function addItem (list/* shoppingList */, newItem, newQuantity) {
     return list 
 }
 
-shoppingList = addItem(shoppingList, "sandia", 3)  //A shoppingList le asigno el resultado de ejecutar addItem
+shoppingList = addItem(shoppingList, "sandia", 3) //A shoppingList le asigno el resultado de ejecutar addItem
 
 console.table(shoppingList)
 
-console.table(newList)
+
+function removeItem(list, index) { //Necesitamos la lista y la posicion del producto.
+    list.splice(index, 1) //En este caso, solo necesitamos borrar un producto, por eso el segundo parámetro siempre será 1.
+    return list
+}
+
+shoppingList = removeItem(shoppingList, 3)
+
+console.table(shoppingList)
+
+function updateItem(index, newItem, newQuantity) {
+    
+}
