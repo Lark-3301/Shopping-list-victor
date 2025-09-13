@@ -32,6 +32,21 @@ let fourthProduct = {
 
 shoppingList.push(fourthProduct)
 
+let newList = []
 
+function addItem (list/* shoppingList */, newItem, newQuantity) {
+    let newProduct = {
+        item: newItem, //item: "Coca-cola"
+        quantity: newQuantity, //quantity: 4
+        purchased: false
+    }
+
+    list.push(newProduct) //shoppingList.push(newPrduct)
+    return list 
+}
+
+shoppingList = addItem(shoppingList, "sandia", 3)  //A shoppingList le asigno el resultado de ejecutar addItem
 
 console.table(shoppingList)
+
+console.table(newList)
